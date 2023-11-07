@@ -18,59 +18,55 @@
     transition: filter 250ms, color 200ms;
   }
 
-  .btn {
-    // All the previous code
+  &--primary {
+    color: var(--color-white);
+    background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-rotate));
 
-    &--primary {
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:active {
       color: var(--color-white);
-      background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-rotate));
-
-      &:hover,
-      &:focus,
-      &:focus-within,
-      &:active {
-        color: var(--color-white);
-        filter: saturate(1.4) brightness(115%);
-      }
+      filter: saturate(1.4) brightness(115%);
     }
+  }
 
-    &--secondary {
+  &--secondary {
+    color: var(--color-white);
+    background-image: linear-gradient(to right, var(--color-secondary), var(--color-secondary-rotate));
+
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:active {
       color: var(--color-white);
-      background-image: linear-gradient(to right, var(--color-secondary), var(--color-secondary-rotate));
-
-      &:hover,
-      &:focus,
-      &:focus-within,
-      &:active {
-        color: var(--color-white);
-        filter: saturate(1.2) brightness(110%);
-      }
+      filter: saturate(1.2) brightness(110%);
     }
+  }
 
-    &--light {
+  &--light {
+    color: var(--color-dark);
+    background-color: var(--color-light);
+
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:active {
       color: var(--color-dark);
-      background-color: var(--color-light);
-
-      &:hover,
-      &:focus,
-      &:focus-within,
-      &:active {
-        color: var(--color-dark);
-        filter: brightness(92%);
-      }
+      filter: brightness(92%);
     }
+  }
 
-    &--dark {
+  &--dark {
+    color: var(--color-white);
+    border-color: var(--color-dark);
+    background-color: var(--color-dark);
+
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:active {
       color: var(--color-white);
-      border-color: var(--color-dark);
-      background-color: var(--color-dark);
-
-      &:hover,
-      &:focus,
-      &:focus-within,
-      &:active {
-        color: var(--color-white);
-      }
     }
   }
 }
