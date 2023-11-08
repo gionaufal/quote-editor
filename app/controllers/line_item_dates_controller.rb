@@ -10,10 +10,15 @@ class LineItemDatesController < ApplicationController
     @line_item_date = @quote.line_item_dates.build(line_item_date_params)
 
     if @line_item_date.save
-      redirect_to @quote, notice: 'Date was successfully created.'
+      respond_to do |format|
+        message = 'Date was successfully created.'
+        format.html { redirect_to @quote, notice: message }
+        format.turbo_stream { flash.now[:notice] = message }
+      end
     else
       render :new, status: :unprocessable_entity
     end
+
   end
 
   def edit
@@ -21,7 +26,11 @@ class LineItemDatesController < ApplicationController
 
   def update
     if @line_item_date.update(line_item_date_params)
-      redirect_to @quote, notice: 'Date was successfully updated.'
+      respond_to do |format|
+        message = 'Date was successfully updated.'
+        format.html { redirect_to @quote, notice: message }
+        format.turbo_stream { flash.now[:notice] = message }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -30,7 +39,11 @@ class LineItemDatesController < ApplicationController
   def destroy
     @line_item_date.destroy
 
-    redirect_to @quote, notice: 'Date was successfully destroyed.'
+    respond_to do |format|
+      message = 'Date was successfully destroyed.'
+      format.html { redirect_to @quote, notice: message }
+      format.turbo_stream { flash.now[:notice] = message }
+    end
   end
 
   private
