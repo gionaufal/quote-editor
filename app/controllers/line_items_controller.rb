@@ -11,8 +11,11 @@ class LineItemsController < ApplicationController
     @line_item = @line_item_date.line_items.build(line_item_params)
 
     if @line_item.save
-      message = "Item was successfully created."
-      redirect_to @quote, notice: message
+      respond_to do |format|
+        message = "Item was successfully created."
+        format.html { redirect_to @quote, notice: message }
+        format.turbo_stream { flash.now[:notice] = message }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -23,10 +26,13 @@ class LineItemsController < ApplicationController
 
   def update
     if @line_item.update(line_item_params)
-      message = "Item was successfully updated."
-      redirect_to @quote, notice: message
+      respond_to do |format|
+        message = "Item was successfully updated."
+        format.html { redirect_to @quote, notice: message }
+        format.turbo_stream { flash.now[:notice] = message }
+      end
     else
-      render :new, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -34,7 +40,10 @@ class LineItemsController < ApplicationController
     @line_item.destroy
 
     message = 'Item was successfully destroyed.'
-    redirect_to @quote, notice: message
+    respond_to do |format|
+      format.html { redirect_to @quote, notice: message }
+      format.turbo_stream { flash.now[:notice] = message }
+    end
   end
 
   private
